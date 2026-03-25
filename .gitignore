@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+# Secrets — NEVER commit
+.env
+*.env.local
+
+# Build artifacts
+arabic-pos-backend/target/
+arabic-pos-system/dist/
+arabic-pos-system/node_modules/
+
+# DB backups
+backups/
+
+# IDE
+.idea/

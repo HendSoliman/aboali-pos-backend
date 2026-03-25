@@ -1,4 +1,4 @@
-package com.aboali.aboali_pos_backend;
+package com.aboali;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
