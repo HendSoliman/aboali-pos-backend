@@ -10,5 +10,6 @@ public class OrderItemDTO {
     private String name;
     private BigDecimal price;
     private Integer quantity;
+    private String unit;
     private BigDecimal subtotal;
 }

@@ -1,0 +1,11 @@
+-- V2__add_loose_products.sql
+ALTER TABLE products
+  ADD COLUMN IF NOT EXISTS is_loose BOOLEAN NOT NULL DEFAULT FALSE,
+  ADD COLUMN IF NOT EXISTS unit     VARCHAR(20)      DEFAULT 'piece';
+
+INSERT INTO products (name, name_ar, price, emoji, category, is_loose, unit, active)
+VALUES
+  ('Rice',   'أرز',    12.50, '🌾', 'بقالة', TRUE,  'kg',    TRUE),
+  ('Sugar',  'سكر',    8.00,  '🍬', 'بقالة', TRUE,  'kg',    TRUE),
+  ('Flour',  'دقيق',   7.50,  '🌾', 'بقالة', TRUE,  'kg',    TRUE),
+  ('Cheese', 'جبنة',   55.00, '🧀', 'ألبان', TRUE,  'gram',  TRUE);

@@ -1,14 +1,20 @@
 // src/main/java/com/aboali/service/OrderService.java
 package com.aboali.service;
 
-import com.aboali.dto.*;
+import com.aboali.dto.OrderDTO;
+import com.aboali.dto.OrderItemDTO;
 import com.aboali.exception.ResourceNotFoundException;
-import com.aboali.model.*;
-import com.aboali.repository.*;
+import com.aboali.model.Order;
+import com.aboali.model.OrderItem;
+import com.aboali.repository.OrderRepository;
+import com.aboali.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -54,6 +60,7 @@ public class OrderService {
                             .price(itemDTO.getPrice())
                             .quantity(itemDTO.getQuantity())
                             .subtotal(itemDTO.getSubtotal())
+                            .unit(itemDTO.getUnit())
                             .build();
         }).toList();
         
@@ -82,6 +89,7 @@ public class OrderService {
                        .items(o.getItems().stream().map(i -> OrderItemDTO.builder()
                                                                          .productId(i.getProductId())
                                                                          .name(i.getName()).price(i.getPrice())
+                                                                         .unit(i.getUnit())
                                                                          .quantity(i.getQuantity()).subtotal(i.getSubtotal())
                                                                          .build()).toList())
                        .build();

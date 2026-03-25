@@ -1,6 +1,7 @@
 
 package com.aboali.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -27,4 +28,10 @@ public class ProductDTO {
     
     private String emoji;
     private Boolean active;
+
+    private String  unit;
+    
+    @JsonProperty("isLoose")
+    private Boolean isLoose;
+    
 }

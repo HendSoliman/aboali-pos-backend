@@ -44,6 +44,12 @@ public class Product {
     
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+ 
+    @Column(name = "unit", nullable = false)
+    private String unit = "piece";   // "piece" | "kg" | "gram"
+    
+    @Column(name = "is_loose", nullable = false)
+    private Boolean isLoose = false;
     
     @PrePersist
     protected void onCreate() {

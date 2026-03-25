@@ -8,6 +8,7 @@ import com.aboali.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -68,13 +69,16 @@ public class ProductService {
         return repo.findById(id)
                    .orElseThrow(() -> new ResourceNotFoundException("المنتج غير موجود: " + id));
     }
-    
+
     private ProductDTO toDTO(Product p) {
         return ProductDTO.builder()
-                         .id(p.getId()).name(p.getName()).nameAr(p.getNameAr())
+                         .id(p.getId())
+                         .name(p.getName()).nameAr(p.getNameAr())
                          .barcode(p.getBarcode()).category(p.getCategory())
                          .price(p.getPrice()).cost(p.getCost())
+                         .unit(p.getUnit())
                          .stock(p.getStock()).emoji(p.getEmoji()).active(p.getActive())
+                         .isLoose(p.getIsLoose())
                          .build();
     }
     
@@ -82,6 +86,8 @@ public class ProductService {
         return Product.builder()
                       .name(dto.getName()).nameAr(dto.getNameAr())
                       .barcode(dto.getBarcode()).category(dto.getCategory())
+                      .unit(dto.getUnit())
+                      .isLoose(dto.getIsLoose())
                       .price(dto.getPrice()).cost(dto.getCost() != null ? dto.getCost() : java.math.BigDecimal.ZERO)
                       .stock(dto.getStock()).emoji(dto.getEmoji()).active(true)
                       .build();
